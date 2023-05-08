@@ -1,0 +1,12 @@
+public class DeltaSyncResponse implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private List<FileChangeEvent> changes;
+
+    public DeltaSyncResponse(List<FileChangeEvent> changes) {
+        this.changes = changes;
+    }
+
+    public List<FileChangeEvent> getChanges() {
+        return changes;
+    }
+}

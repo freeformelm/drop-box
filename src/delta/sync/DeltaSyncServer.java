@@ -112,8 +112,7 @@ public class DeltaSyncServer {
             throws UnknownHostException {
         if (filename != null) {
             int port = Constants.SERVER_UDP_PORT_SYNC + reverseSyncCounter;
-            String response =
-                    "SEND REVERSE SYNC REQUEST OK: receive data with the port:" + port;
+            String response = "SEND REVERSE SYNC REQUEST OK: receive data with the port:" + port;
             System.out.println(">> Response: " + response + Constants.CRLF);
 
             // send the response
@@ -138,9 +137,8 @@ public class DeltaSyncServer {
             } catch (InterruptedException e) {
             }
         } else {
-            String response =
-                    "SEND REVERSE SYNC REQUEST NOTHING TO SYNC: receive data with the port:"
-                            + 0;
+            String response = "SEND REVERSE SYNC REQUEST NOTHING TO SYNC: receive data with the port:"
+                    + 0;
             System.out.println(">> Response: " + response + Constants.CRLF);
 
             // send the response
@@ -151,15 +149,17 @@ public class DeltaSyncServer {
     }
 
     private static String getFileToSyncBack(String files) {
-        List<String> filesInClient =
-                files.isEmpty() ? new ArrayList<>() : Arrays.stream(files.split("&")).collect(Collectors.toList());
+        List<String> filesInClient = files.isEmpty() ? new ArrayList<>()
+                : Arrays.stream(files.split("&")).collect(Collectors.toList());
         List<String> filesInServer = Helper.getAllFileNames(Constants.SERVER_FILE_ROOT);
 
-       /* for (String file : filesInServer){
-            if(!filesInClient.contains(file)){
-                differences.add(file);
-            }
-        } */
+        /*
+         * for (String file : filesInServer){
+         * if(!filesInClient.contains(file)){
+         * differences.add(file);
+         * }
+         * }
+         */
 
         List<String> differences = filesInServer.stream()
                 .filter(element -> !filesInClient.contains(element))
@@ -171,7 +171,8 @@ public class DeltaSyncServer {
     public static void receiveHandleDelete(Socket socket, PrintWriter outputSocket, int senderPort,
             String fileToDelete) {
         try {
-            // create the response with the port number which will receive data from clients through UDP
+            // create the response with the port number which will receive data from clients
+            // through UDP
             String response = "DELETE REQUEST OK: receive data with the port:" + Constants.SERVER_UDP_PORT;
             System.out.println(">> Response: " + response + Constants.CRLF);
 
@@ -194,7 +195,8 @@ public class DeltaSyncServer {
 
     public static void receiveHandle(Socket socket, PrintWriter outputSocket, int senderPort) {
         try {
-            // create the response with the port number which will receive data from clients through UDP
+            // create the response with the port number which will receive data from clients
+            // through UDP
             String response = "SEND REQUEST OK: receive data with the port:" + Constants.SERVER_UDP_PORT;
             System.out.println(">> Response: " + response + Constants.CRLF);
 
@@ -232,4 +234,3 @@ public class DeltaSyncServer {
     }
 
 }
-
